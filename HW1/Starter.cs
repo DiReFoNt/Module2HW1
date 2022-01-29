@@ -16,7 +16,7 @@ namespace HW1
         public void Run()
         {
             Console.WriteLine("Process started successfully");
-            for (int i = 0; i <= 1000; i++)
+            for (int i = 0; i <= 100; i++)
             {
                 int randomNumber = _rand.Next(1, 4);
                 if (_result.Status == true)
