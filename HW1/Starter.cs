@@ -37,20 +37,14 @@ namespace HW1
 
                 if (_result.Status == false)
                 {
-                    _logger.LogText($"Action failed by a reason {_result.Text}");
-                    _logger.LogType("Error");
-                    _logger.NewLog();
+                    _logger.NewLog(DateTime.Now, "Error", $"Action failed by a reason {_result.Text}");
                     _result.Status = true;
                 }
             }
 
             // turning a log into a string
-            List<string> workResult = _logger.GetLogWorkResult();
-            string result = " ";
-            for (int i = 0; i < workResult.Count; i++)
-            {
-                result += workResult[i] + "\n";
-            }
+            string[] workResult = _logger.GetLogWorkResult();
+            string result = string.Join("\n", workResult);
 
             // writing log to file
             File.WriteAllText("log.txt", result);

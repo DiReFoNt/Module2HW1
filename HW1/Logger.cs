@@ -8,12 +8,9 @@ namespace HW1
 {
     public class Logger
     {
-        private DateTime _logTime;
-        private string _logType;
-        private string _logText;
+        private static int _index = 0;
         private string _log;
-        private List<string> _logWorkResult = new List<string>();
-
+        private string[] _logWorkResult = new string[1000];
         private static readonly Logger _instance = new Logger();
         static Logger()
         {
@@ -21,7 +18,6 @@ namespace HW1
 
         private Logger()
         {
-            _logTime = DateTime.Now;
         }
 
         public static Logger Instance
@@ -29,33 +25,18 @@ namespace HW1
             get { return _instance; }
         }
 
-        // changing the log type
-        public void LogType(string type)
-        {
-            _logType = type;
-        }
-
-        // changing the log text
-        public void LogText(string text)
-        {
-            _logText = text;
-        }
-
-        // changing the log time
-        public void LogTime(DateTime time)
-        {
-            _logTime = time;
-        }
-
         // write log to memory
-        public string NewLog()
+        public string NewLog(DateTime date, string logType, string logText)
         {
-            _logWorkResult.Add(_log);
-            return _log = $"{_logTime}: {_logType}: {_logText}";
+            _log = $"{date}: {logType}: {logText}";
+            _logWorkResult[_index] = _log;
+            Console.WriteLine(_log);
+            ++_index;
+            return _log;
         }
 
         // log report
-        public List<string> GetLogWorkResult()
+        public string[] GetLogWorkResult()
         {
             return _logWorkResult;
         }

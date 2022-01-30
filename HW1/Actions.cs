@@ -8,20 +8,15 @@ namespace HW1
 {
     public class Actions
     {
-        private Result _results = new Result();
         public Result Info(Logger logger)
         {
-            logger.LogText("Start method");
-            logger.LogType("Info");
-            logger.NewLog();
+            logger.NewLog(DateTime.Now, "Info", "Start method");
             return new Result { Status = true };
         }
 
         public Result Warning(Logger logger)
         {
-            logger.LogText("Skipped logic in method");
-            logger.LogType("Warning");
-            logger.NewLog();
+            logger.NewLog(DateTime.Now, "Warning", "Skipped logic in method");
             return new Result { Status = true };
         }
 
